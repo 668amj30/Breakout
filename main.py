@@ -22,6 +22,9 @@ blocksX = []
 blocksY = []
 blocksWd = 30
 blocksHt = 10
+blocksGap = 10
+blocksNumX = 7
+blocksNumY = 3
 
 plyMoving = False
 
@@ -33,6 +36,37 @@ def spawnBlock(): # Spawn and initialize blocks
   block.speed(0)
   blocks.append(block)
 
+def gameSpawn():
+    global blocksWd, blocksHt, blocksGap, blocksNumX, blocksNumY
+    totalWd = (blocksNumX*blocksWd)+((blocksNumX-1)*blocksGap)
+    totalHt = (blocksNumY*blocksHt)+((blocksNumY-1)*blocksGap)
+    incrementX=blocksWd+blocksGap
+    incrementY=blocksHt+blocksGap
+    currentX=(-totalWd)/2
+    currentY=((-totalHt)/2)+500
+    currentX+=blocksWd/2
+    currentY+=blocksHt/2
+    counterX=0
+    counterY=0
+    while counterY<3:
+        counterY+=1
+        currentY+=incrementY
+        if counterY==0:
+            currentShape=blocksImg
+        elif counterY==1:
+            pass
+        elif counterY==2:
+            pass
+        while counterX<7:
+            counterX+=1
+            blockName=str(counterX),str(counterY)
+            blockName=trtl.Turtle
+            blockName.goto(currentX,currentY)
+            blockName.shape(currentShape)
+            currentX+=incrementX
+        currentX=(-totalWd)/2
+        currentX+=blocksWd/2
+  
 def moveBall():
   running2 = True
   while (True and running2):
